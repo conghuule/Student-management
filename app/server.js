@@ -3,7 +3,7 @@ const router = require("./routers/root.router");
 const app = express();
 const port = 3000;
 
-//chuyen res,req ve json
+//chuyen res,req ve  json
 app.use(express.json());
 
 app.use(router);
