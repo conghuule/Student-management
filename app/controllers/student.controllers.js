@@ -6,8 +6,8 @@ const {
   deleteById,
 } = require("../services/student.services");
 
-const getStudentList = (req, res) => {
-  const studentList = getList();
+const getStudentList = async (req, res) => {
+  const studentList = await getList();
   if (studentList) {
     res.status(200).send(studentList);
   } else {
@@ -15,11 +15,11 @@ const getStudentList = (req, res) => {
   }
 };
 
-const getDetailStudentById = (req, res) => {
+const getDetailStudentById = async (req, res) => {
   const params = req.params;
   const id = params.id;
 
-  const student = getDetail(id);
+  const student = await getDetail(id);
 
   if (student) {
     res.status(200).send(student);
@@ -28,17 +28,17 @@ const getDetailStudentById = (req, res) => {
   }
 };
 
-const createStudent = (req, res) => {
+const createStudent = async (req, res) => {
   let student = req.body;
-  const newStudent = create(student);
+  const newStudent = await create(student);
   res.status(201).send(newStudent);
 };
 
-const updateStudent = (req, res) => {
+const updateStudent = async (req, res) => {
   const { id } = req.params;
   const student = req.body;
 
-  const updateStudent = update(id, student);
+  const updateStudent = await update(id, student);
   if (updateStudent) {
     res.status(200).send(updateStudent);
   } else {
@@ -46,9 +46,9 @@ const updateStudent = (req, res) => {
   }
 };
 
-const deleteStudent = (req, res) => {
+const deleteStudent = async (req, res) => {
   const { id } = req.params;
-  const removedStudent = deleteById(id);
+  const removedStudent = await deleteById(id);
   if (removedStudent) {
     res.status(200).send(removedStudent);
   } else {
